@@ -1,0 +1,34 @@
+stages:
+  prepare:
+    cmd: python -m src.prepare
+    deps:
+      - src/prepare.py
+      - src/config.py
+    params:
+      - config/config.yaml:
+          - data.n_samples
+          - data.noise
+          - data.seed
+    outs:
+      - data/raw/rides.csv
+
+  train:
+    cmd: python -m src.train_pipeline
+    deps:
+      - src/train.py
+      - data/raw/rides.csv
+    params:
+      - config/config.yaml:
+          - model.n_estimators
+          - model.max_depth
+          - data.test_size
+    outs:
+      - models/rf_model.pkl
+
+  evaluate:
+    cmd: python -m src.evaluate_pipeline
+    deps:
+      - src/train.py
+      - models/rf_model.pkl
+    outs:
+      - metrics/scores.json

@@ -1,0 +1,60 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m src.prepare
+    deps:
+    - path: src/config.py
+      hash: md5
+      md5: ca2f9fa54dcd816b85340208646544ad
+      size: 333
+    - path: src/prepare.py
+      hash: md5
+      md5: 632544802030abf640ddd52ec3912d7a
+      size: 688
+    params:
+      config/config.yaml:
+        data.n_samples: 2000
+        data.noise: 1.0
+        data.seed: 42
+    outs:
+    - path: data/raw/rides.csv
+      hash: md5
+      md5: 48256a20e39bb735fad7dabb8f3e214c
+      size: 77510
+  train:
+    cmd: python -m src.train_pipeline
+    deps:
+    - path: data/raw/rides.csv
+      hash: md5
+      md5: 48256a20e39bb735fad7dabb8f3e214c
+      size: 77510
+    - path: src/train.py
+      hash: md5
+      md5: b08f578c972225f444fb115f537101cb
+      size: 937
+    params:
+      config/config.yaml:
+        data.test_size: 0.2
+        model.max_depth: 6
+        model.n_estimators: 100
+    outs:
+    - path: models/rf_model.pkl
+      hash: md5
+      md5: 579326cd3a6072876d3fa976c31e7c22
+      size: 946945
+  evaluate:
+    cmd: python -m src.evaluate_pipeline
+    deps:
+    - path: models/rf_model.pkl
+      hash: md5
+      md5: 579326cd3a6072876d3fa976c31e7c22
+      size: 946945
+    - path: src/train.py
+      hash: md5
+      md5: b08f578c972225f444fb115f537101cb
+      size: 937
+    outs:
+    - path: metrics/scores.json
+      hash: md5
+      md5: 32f656e88ec798c78982edae605f3c7c
+      size: 88
