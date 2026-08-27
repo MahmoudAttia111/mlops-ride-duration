@@ -1,7 +1,14 @@
 README.md
 pyproject.toml
+src/__init__.py
+src/config.py
+src/evaluate_pipeline.py
+src/prepare.py
+src/train.py
+src/train_pipeline.py
 src/ride_duration_mlops.egg-info/PKG-INFO
 src/ride_duration_mlops.egg-info/SOURCES.txt
 src/ride_duration_mlops.egg-info/dependency_links.txt
 src/ride_duration_mlops.egg-info/requires.txt
 src/ride_duration_mlops.egg-info/top_level.txt
+tests/test_train.py
