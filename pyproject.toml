@@ -1,0 +1,24 @@
+[project]
+name = "ride-duration-mlops"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "scikit-learn",
+    "pandas",
+    "numpy",
+    "pyyaml",
+    "mlflow",
+    "dvc[gs]",
+    "wandb",
+    "litestar",
+    "uvicorn",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov", "ruff", "black", "pre-commit"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.black]
+line-length = 100

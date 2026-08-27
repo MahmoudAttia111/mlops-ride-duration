@@ -1,0 +1,16 @@
+scikit-learn
+pandas
+numpy
+pyyaml
+mlflow
+dvc[gs]
+wandb
+litestar
+uvicorn
+
+[dev]
+pytest
+pytest-cov
+ruff
+black
+pre-commit

@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: ride-duration-mlops
+Version: 0.1.0
+Requires-Python: >=3.11
+Requires-Dist: scikit-learn
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: pyyaml
+Requires-Dist: mlflow
+Requires-Dist: dvc[gs]
+Requires-Dist: wandb
+Requires-Dist: litestar
+Requires-Dist: uvicorn
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
