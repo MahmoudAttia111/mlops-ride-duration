@@ -1,27 +1,21 @@
 [project]
-name = "ride-duration-mlops"
+name = "prodml"
 version = "0.1.0"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
-    "scikit-learn",
-    "pandas",
-    "numpy",
-    "pyyaml",
-    "mlflow",
-    "dvc[gs]",
-    "wandb",
-    "litestar",
-    "uvicorn",
+    "scikit-learn", "pandas", "fastapi", "uvicorn",
+    "pydantic", "pydantic-settings", "joblib",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-cov", "ruff", "black", "pre-commit"]
+dev = ["pytest", "pytest-cov", "ruff", "black", "mypy", "httpx", "pre-commit"]
 
-[tool.ruff]
-line-length = 100
+[project.scripts]
+prodml-train = "prodml.train:main"
 
-[tool.black]
-line-length = 100
-
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
 [tool.pytest.ini_options]
-pythonpath = ["."]
+addopts = "--cov=src/prodml --cov-fail-under=70"
+pytest -v --cov=src/prodml --cov-report=term-missing
