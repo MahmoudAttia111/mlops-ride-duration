@@ -1,4 +1,3 @@
-# tests/test_features.py
 from prodml.features import clean_arabic
 
 def test_removes_diacritics():
@@ -9,3 +8,7 @@ def test_normalizes_alef():
 
 def test_handles_empty_string():
     assert clean_arabic("") == ""
+
+def test_removes_punctuation():
+    result = clean_arabic("ممتاز!! جداً؟؟")
+    assert "!" not in result and "؟" not in result

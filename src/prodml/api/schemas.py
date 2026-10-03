@@ -1,4 +1,3 @@
-# src/prodml/api/schemas.py
 from pydantic import BaseModel, Field
 
 class PredictRequest(BaseModel):
