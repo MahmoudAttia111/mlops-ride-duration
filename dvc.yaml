@@ -1,34 +1,23 @@
 stages:
   prepare:
-    cmd: python -m src.prepare
+    cmd: python -m prodml.data
     deps:
-      - src/prepare.py
-      - src/config.py
-    params:
-      - config/config.yaml:
-          - data.n_samples
-          - data.noise
-          - data.seed
+      - data/raw/balanced-reviews.txt
+      - src/prodml/data.py
+      - src/prodml/features.py
     outs:
-      - data/raw/rides.csv
+      - data/processed/
 
   train:
-    cmd: python -m src.train_pipeline
+    cmd: python -m prodml.train
     deps:
-      - src/train.py
-      - data/raw/rides.csv
+      - data/processed/
+      - src/prodml/train.py
     params:
-      - config/config.yaml:
-          - model.n_estimators
-          - model.max_depth
-          - data.test_size
+      - config.yaml:model
     outs:
-      - models/rf_model.pkl
-
-  evaluate:
-    cmd: python -m src.evaluate_pipeline
-    deps:
-      - src/train.py
-      - models/rf_model.pkl
-    outs:
-      - metrics/scores.json
+      - models/sentiment_model.pkl
+      - models/vectorizer.pkl
+    metrics:
+      - metrics/train_metrics.json:
+          cache: false
