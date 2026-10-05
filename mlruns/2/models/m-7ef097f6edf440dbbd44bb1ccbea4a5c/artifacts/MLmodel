@@ -1,0 +1,23 @@
+artifact_path: /workspaces/mlops-ride-duration/mlruns/2/models/m-7ef097f6edf440dbbd44bb1ccbea4a5c/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.12.1
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.0
+    skops_trusted_types: null
+mlflow_version: 3.15.2
+model_id: m-7ef097f6edf440dbbd44bb1ccbea4a5c
+model_size_bytes: 169772
+model_uuid: m-7ef097f6edf440dbbd44bb1ccbea4a5c
+prompts: null
+run_id: d974871cc8da4f0594755279bd9b0a95
+utc_time_created: '2026-10-05 09:25:35.252514'
